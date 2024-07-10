@@ -23,3 +23,31 @@ class Owner:
         if not isinstance(pet, Pet):
             raise Exception("The pet must be an instance of the Pet class.")
         pet.owner = self
+
+    def get_sorted_pets(self):
+        return sorted(self.pets(), key=lambda pet: pet.name)
+    
+
+# Example usage
+try:
+    owner1 = Owner("John Doe")
+    owner2 = Owner("Jane Smith")
+
+    pet1 = Pet("Buddy", "dog")
+    pet2 = Pet("Whiskers", "cat")
+    pet3 = Pet("Slinky", "rodent")
+    pet4 = Pet("Spike", "reptile")
+
+    owner1.add_pet(pet1)
+    owner1.add_pet(pet2)
+    owner2.add_pet(pet3)
+    owner1.add_pet(pet4)
+
+except Exception as e:
+    print(e)
+
+print(owner1.pets())  # Output: [Pet(name=Buddy, pet_type=dog, owner=John Doe), Pet(name=Whiskers, pet_type=cat, owner=John Doe), Pet(name=Spike, pet_type=reptile, owner=John Doe)]
+print(owner2.pets())  # Output: [Pet(name=Slinky, pet_type=rodent, owner=Jane Smith)]
+
+print(owner1.get_sorted_pets())  # Output: [Pet(name=Buddy, pet_type=dog, owner=John Doe), Pet(name=Spike, pet_type=reptile, owner=John Doe), Pet(name=Whiskers, pet_type=cat, owner=John Doe)]
+print(owner2.get_sorted_pets()) # Output: [Pet(name=Slinky, pet_type=rodent, owner=Jane Smith)]
